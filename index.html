@@ -1,0 +1,706 @@
+<!DOCTYPE html> 
+<html lang="ru"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Салон красоты</title> 
+
+ 
+
+<link href="https://fonts.googleapis.com/css2? 
+family=UnifrakturCook:wght@700&family=Playfair+Display:wght@400;600;700&display=sw 
+ap" rel="stylesheet"> 
+
+ 
+
+<style> 
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+} 
+
+ 
+
+body { 
+    min-height: 100vh; 
+    background: 
+        radial-gradient(circle at 20% 20%, #58113d 0%, transparent 40%), 
+        radial-gradient(circle at 80% 80%, #42102e 0%, transparent 40%), 
+        linear-gradient(135deg, #080408, #190817, #090509); 
+    color: #ffb6df; 
+    font-family: 'Playfair Display', serif; 
+    overflow-x: hidden; 
+} 
+
+ 
+
+/* Фоновые стикеры */ 
+
+ 
+
+.sticker { 
+    position: fixed; 
+    font-size: 35px; 
+    opacity: 0.35; 
+    pointer-events: none; 
+    z-index: 0; 
+    animation: float 7s ease-in-out infinite; 
+} 
+
+ 
+
+.sticker:nth-child(1) { top: 15%; left: 5%; } 
+.sticker:nth-child(2) { top: 65%; left: 8%; animation-delay: 2s; } 
+.sticker:nth-child(3) { top: 20%; right: 7%; animation-delay: 1s; } 
+.sticker:nth-child(4) { top: 75%; right: 8%; animation-delay: 3s; } 
+.sticker:nth-child(5) { top: 45%; right: 15%; animation-delay: 4s; } 
+
+ 
+
+@keyframes float { 
+
+
+    0%, 100% { transform: translateY(0) rotate(-10deg); } 
+    50% { transform: translateY(-25px) rotate(10deg); } 
+} 
+
+ 
+
+/* Навигация */ 
+
+ 
+
+nav { 
+    position: relative; 
+    z-index: 5; 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+    padding: 25px 10px; 
+} 
+
+ 
+
+nav button { 
+    background: transparent; 
+    border: 1px solid #ff65b9; 
+    color: #ff9bd4; 
+    padding: 12px 25px; 
+    border-radius: 30px; 
+    font-family: inherit; 
+    font-size: 17px; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    box-shadow: 0 0 10px #ff299b55; 
+} 
+
+ 
+
+nav button:hover, 
+nav button.active { 
+    background: #ff299b; 
+    color: white; 
+    box-shadow: 0 0 20px #ff299b, 0 0 40px #ff299b77; 
+    transform: translateY(-3px); 
+} 
+
+ 
+
+/* Страницы */ 
+
+ 
+
+.page { 
+    display: none; 
+    position: relative; 
+    z-index: 2; 
+    min-height: 75vh; 
+    padding: 50px 20px; 
+    text-align: center; 
+    animation: appear 0.7s ease; 
+} 
+
+
+ 
+
+.page.active { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+} 
+
+ 
+
+@keyframes appear { 
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    } 
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+} 
+
+ 
+
+/* Заголовки */ 
+
+ 
+
+h1, h2, h3 { 
+    font-family: 'UnifrakturCook', cursive; 
+    color: #ff75c7; 
+    text-shadow: 
+        0 0 7px #ff299b, 
+        0 0 20px #ff299b, 
+        0 0 40px #ff299b; 
+} 
+
+ 
+
+h1 { 
+    font-size: clamp(55px, 10vw, 100px); 
+    margin-bottom: 20px; 
+} 
+
+ 
+
+h2 { 
+    font-size: clamp(40px, 7vw, 65px); 
+    margin-bottom: 30px; 
+} 
+
+ 
+
+h3 { 
+    font-size: 35px; 
+} 
+
+ 
+
+.description { 
+    font-size: 22px; 
+    color: #ffd0e9; 
+    text-shadow: 0 0 10px #ff299b; 
+
+
+    letter-spacing: 2px; 
+} 
+
+ 
+
+/* Главная */ 
+
+ 
+
+.main-decoration { 
+    margin-top: 35px; 
+    font-size: 45px; 
+    animation: heartbeat 2s infinite; 
+} 
+
+ 
+
+@keyframes heartbeat { 
+    0%, 100% { transform: scale(1); } 
+    50% { transform: scale(1.15); } 
+} 
+
+ 
+
+/* Услуги */ 
+
+ 
+
+.services { 
+    width: min(600px, 100%); 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    margin-bottom: 40px; 
+} 
+
+ 
+
+.service { 
+    background: #ff70bd12; 
+    border: 1px solid #ff65b9; 
+    border-radius: 15px; 
+    padding: 18px; 
+    font-size: 19px; 
+    color: #ffd4ec; 
+    box-shadow: 0 0 12px #ff299b33; 
+    transition: 0.3s; 
+} 
+
+ 
+
+.service:hover { 
+    background: #ff299b33; 
+    transform: scale(1.03); 
+    box-shadow: 0 0 20px #ff299b88; 
+} 
+
+ 
+
+/* Цены */ 
+
+ 
+
+.price-box { 
+    width: min(400px, 100%); 
+    padding: 30px 20px; 
+
+
+    border: 1px solid #ff65b9; 
+    border-radius: 20px; 
+    background: linear-gradient(145deg, #3b1030, #160817); 
+    box-shadow: 0 0 25px #ff299b55; 
+} 
+
+ 
+
+.price-name { 
+    font-size: 25px; 
+    margin: 20px 0; 
+    color: #ffd4ec; 
+} 
+
+ 
+
+.price { 
+    font-size: 40px; 
+    color: #ff75c7; 
+    text-shadow: 0 0 15px #ff299b; 
+} 
+
+ 
+
+.price-buttons { 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+    margin-top: 25px; 
+} 
+
+ 
+
+.price-buttons button { 
+    background: #ff299b; 
+    color: white; 
+    border: none; 
+    padding: 12px 20px; 
+    border-radius: 25px; 
+    cursor: pointer; 
+    font-size: 15px; 
+    font-family: inherit; 
+    transition: 0.3s; 
+} 
+
+ 
+
+.price-buttons button:hover { 
+    background: #ff75c7; 
+    box-shadow: 0 0 20px #ff299b; 
+    transform: scale(1.05); 
+} 
+
+ 
+
+/* Запись */ 
+
+ 
+
+.contact-box { 
+    width: min(500px, 100%); 
+    padding: 30px; 
+
+
+    border: 1px solid #ff65b9; 
+    border-radius: 20px; 
+    background: #ff299b12; 
+    box-shadow: 0 0 25px #ff299b44; 
+} 
+
+ 
+
+.contact-text { 
+    font-size: 21px; 
+    line-height: 2; 
+    color: #ffd4ec; 
+} 
+
+ 
+
+.phone { 
+    font-size: 28px; 
+    color: #ff75c7; 
+    text-shadow: 0 0 15px #ff299b; 
+    margin: 15px 0; 
+} 
+
+ 
+
+.waiting { 
+    margin-top: 40px; 
+    font-size: 35px; 
+    font-family: 'UnifrakturCook', cursive; 
+    color: #ff75c7; 
+    text-shadow: 0 0 15px #ff299b; 
+} 
+
+ 
+
+/* Пузырьки */ 
+
+ 
+
+.bubble { 
+    position: fixed; 
+    bottom: -30px; 
+    width: 12px; 
+    height: 12px; 
+    border: 2px solid #ff75c7; 
+    border-radius: 50%; 
+    box-shadow: 0 0 12px #ff299b; 
+    pointer-events: none; 
+    z-index: 10; 
+    animation: bubbleUp 2s ease-out forwards; 
+} 
+
+ 
+
+@keyframes bubbleUp { 
+    0% { 
+        transform: translateY(0) scale(0.5); 
+        opacity: 0; 
+    } 
+    30% { opacity: 0.9; } 
+
+
+    100% { 
+        transform: translateY(-100vh) scale(2); 
+        opacity: 0; 
+    } 
+} 
+
+ 
+
+/* Телефоны */ 
+
+ 
+
+@media (max-width: 600px) { 
+    nav { 
+        gap: 8px; 
+        padding: 18px 8px; 
+    } 
+
+ 
+
+    nav button { 
+        padding: 10px 17px; 
+        font-size: 15px; 
+    } 
+
+ 
+
+    .page { 
+        padding: 40px 15px; 
+    } 
+
+ 
+
+    .description { 
+        font-size: 17px; 
+    } 
+
+ 
+
+    .service { 
+        font-size: 16px; 
+    } 
+
+ 
+
+    .contact-text { 
+        font-size: 17px; 
+    } 
+
+ 
+
+    .phone { 
+        font-size: 23px; 
+    } 
+
+ 
+
+    .sticker { 
+        font-size: 25px; 
+        opacity: 0.22; 
+    } 
+} 
+</style> 
+</head> 
+
+ 
+
+<body> 
+
+
+ 
+
+<!-- Летающие стикеры --> 
+<div class="sticker">💅</div> 
+<div class="sticker">💗</div> 
+<div class="sticker">💄</div> 
+<div class="sticker">✨</div> 
+<div class="sticker">🪞</div> 
+
+ 
+
+<!-- Навигация --> 
+<nav> 
+    <button class="active" onclick="showPage('home', this)">Главная</button> 
+    <button onclick="showPage('services', this)">Услуги</button> 
+    <button onclick="showPage('booking', this)">Запись</button> 
+</nav> 
+
+ 
+
+<!-- Страница 1 --> 
+<section id="home" class="page active"> 
+    <h1>Салон красоты</h1> 
+
+ 
+
+    <p class="description"> 
+        Сделаем красиво под ваш вкус ♡ 
+    </p> 
+
+ 
+
+    <div class="main-decoration">💗 ✨ 💗</div> 
+
+ 
+
+    <p class="description" style="margin-top: 30px;"> 
+        Ваша красота — наше вдохновение 
+    </p> 
+</section> 
+
+ 
+
+<!-- Страница 2 --> 
+<section id="services" class="page"> 
+    <h2>Наши услуги</h2> 
+
+ 
+
+    <div class="services"> 
+        <div class="service">♡ Услуга 1 — *****</div> 
+        <div class="service">♡ Услуга 2 — *****</div> 
+        <div class="service">♡ Услуга 3 — ******</div> 
+        <div class="service">♡ Услуга 4 — *****</div> 
+        <div class="service">♡ Услуга 5 — *****</div> 
+    </div> 
+
+ 
+
+    <div class="price-box"> 
+        <h3>Наши цены</h3> 
+
+ 
+
+        <div class="price-name" id="priceName"> 
+            Услуга 1 
+        </div> 
+
+
+ 
+
+        <div class="price" id="priceValue"> 
+            1500 ₽ 
+        </div> 
+
+ 
+
+        <div class="price-buttons"> 
+            <button onclick="changePrice(-1)">← Назад</button> 
+            <button onclick="changePrice(1)">Далее →</button> 
+        </div> 
+    </div> 
+</section> 
+
+ 
+
+<!-- Страница 3 --> 
+<section id="booking" class="page"> 
+    <h2>Запись</h2> 
+
+ 
+
+    <div class="contact-box"> 
+        <p class="contact-text"> 
+            Записывайтесь к нам на процедуры! 
+        </p> 
+
+ 
+
+        <div class="phone"> 
+            ☎ *********** 
+        </div> 
+
+ 
+
+        <p class="contact-text"> 
+            Нас можно найти по адресу: 
+            <br> 
+            г. ******* ул. ******* 
+        </p> 
+    </div> 
+
+ 
+
+    <div class="waiting"> 
+        Мы вас ждём ❤ 
+    </div> 
+</section> 
+
+ 
+
+<script> 
+
+ 
+
+// Переключение страниц 
+
+ 
+
+function showPage(pageId, button) { 
+    document.querySelectorAll('.page').forEach(page => { 
+        page.classList.remove('active'); 
+    }); 
+
+ 
+
+    document.querySelectorAll('nav button').forEach(btn => { 
+        btn.classList.remove('active'); 
+
+
+    }); 
+
+ 
+
+    document.getElementById(pageId).classList.add('active'); 
+    button.classList.add('active'); 
+
+ 
+
+    createBubbles(); 
+    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+} 
+
+ 
+
+// Цены 
+
+ 
+
+const prices = [ 
+    { name: 'Услуга 1', price: 1500 }, 
+    { name: 'Услуга 2', price: 2000 }, 
+    { name: 'Услуга 3', price: 3000 }, 
+    { name: 'Услуга 4', price: 2500 }, 
+    { name: 'Услуга 5', price: 2700 } 
+]; 
+
+ 
+
+let currentPrice = 0; 
+
+ 
+
+function changePrice(direction) { 
+    currentPrice += direction; 
+
+ 
+
+    if (currentPrice >= prices.length) { 
+        currentPrice = 0; 
+    } 
+
+ 
+
+    if (currentPrice < 0) { 
+        currentPrice = prices.length - 1; 
+    } 
+
+ 
+
+    document.getElementById('priceName').textContent = 
+        prices[currentPrice].name; 
+
+ 
+
+    document.getElementById('priceValue').textContent = 
+        prices[currentPrice].price + ' ₽'; 
+} 
+
+ 
+
+// Анимация пузырьков 
+
+ 
+
+function createBubbles() { 
+    for (let i = 0; i < 18; i++) { 
+        const bubble = document.createElement('div'); 
+        bubble.className = 'bubble'; 
+
+ 
+
+        bubble.style.left = Math.random() * 100 + 'vw'; 
+        bubble.style.animationDelay = Math.random() * 0.8 + 's'; 
+
+
+ 
+
+        const size = Math.random() * 15 + 5; 
+        bubble.style.width = size + 'px'; 
+        bubble.style.height = size + 'px'; 
+
+ 
+
+        document.body.appendChild(bubble); 
+
+ 
+
+        setTimeout(() => { 
+            bubble.remove(); 
+        }, 3000); 
+    } 
+} 
+
+ 
+
+// Пузырьки при первом открытии 
+
+ 
+
+window.addEventListener('load', createBubbles); 
+
+ 
+
+</script> 
+
+ 
+
+</body> 
+</html> 
+
+ 
